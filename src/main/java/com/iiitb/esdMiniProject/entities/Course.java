@@ -1,10 +1,13 @@
 package com.iiitb.esdMiniProject.entities;
 
 
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -25,6 +28,7 @@ import lombok.Setter;
 public class Course {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Course_Id")
     private Long courseId;
 
@@ -45,11 +49,11 @@ public class Course {
 
     @ManyToMany
     @JoinTable(name = "Course_TA", joinColumns = @JoinColumn(name = "course_id", referencedColumnName = "Course_Id"), inverseJoinColumns = @JoinColumn(name = "ta_id", referencedColumnName = "student_id"))
-    private Set<Student> ta;
+    private Set<Student> ta = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name = "course_student", joinColumns = @JoinColumn(name = "course_id", referencedColumnName = "Course_Id"), inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "student_id"))
-    private Set<Student> students;
+    private Set<Student> students = new HashSet<>();
 
     @Column(name = "max_students")
     private Integer maxStudents;

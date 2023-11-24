@@ -3,6 +3,7 @@ package com.iiitb.esdMiniProject.entities;
 
 
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -31,6 +32,9 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "student_id", nullable = false)
     private Long studentId;
+
+    @Column(name = "student_rollNo")
+    private String studentRollNo;
     
     @Column(name = "name")
     private String studentName;
@@ -46,9 +50,9 @@ public class Student {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "students")
-    private Set<Course> coursesTaken;
+    private Set<Course> coursesTaken = new HashSet<>();
 
     @JsonIgnore
     @ManyToMany(mappedBy = "ta")
-    private Set<Course> courseTa;
+    private Set<Course> courseTa = new HashSet<>();
 }

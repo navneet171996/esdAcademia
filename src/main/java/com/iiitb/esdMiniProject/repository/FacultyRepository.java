@@ -9,4 +9,6 @@ import com.iiitb.esdMiniProject.entities.Faculty;
 public interface FacultyRepository extends JpaRepository<Faculty, Long> {
     
     Optional<Faculty> findByEmail(String email);
+
+    Optional<Faculty> findByFacCode(String facCode);
 }

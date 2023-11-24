@@ -1,5 +1,6 @@
 package com.iiitb.esdMiniProject.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -27,16 +28,18 @@ public class Faculty {
     @Column(name = "faculty_id")
     private Long id;
 
+    @Column(name = "faculty_code")
+    private String facCode;
+
     @Column(name = "name")
     private String name;
 
-    @Column(name = "email id", unique = true
-    )
+    @Column(name = "email_id", unique = true)
     private String email;
 
     @Column(name = "password")
     private String password;
 
     @OneToMany(mappedBy = "faculty")
-    private Set<Course> courses;
+    private Set<Course> courses = new HashSet<>();
 }
