@@ -6,4 +6,5 @@ import com.iiitb.esdMiniProject.entities.Department;
 
 public interface DepartmentRepository extends JpaRepository<Department, Long>{
     
+    
 }

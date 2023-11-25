@@ -1,5 +1,6 @@
 package com.iiitb.esdMiniProject.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,13 @@ public class DepartmentService {
     private DepartmentRepository departmentRepository;
 
     public List<Department> viewAllDepartments(){
-        return departmentRepository.findAll();
+        try {
+            return departmentRepository.findAll();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return new ArrayList<>();
+        
     }
 
     public Set<Employee> viewAllEmpByDept(Long deptId){

@@ -3,6 +3,8 @@ package com.iiitb.esdMiniProject.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,6 +36,7 @@ public class Department {
     @Column(name = "dept_capacity")
     private Integer deptCapacity;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "department")
     private Set<Employee> employees = new HashSet<>();
 }
