@@ -48,7 +48,7 @@ public class AuthenticationService {
     }
 
     private boolean authenticateFaculty(String username, String password){
-        Optional<Faculty> facultyByEmail = facultyRepository.findByEmail(username);
+        Optional<Faculty> facultyByEmail = facultyRepository.findByFacCode(username);
         if(facultyByEmail.isPresent()){
             Faculty faculty = facultyByEmail.get();
             return password.equals(faculty.getPassword());

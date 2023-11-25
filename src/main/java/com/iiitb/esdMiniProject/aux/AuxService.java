@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iiitb.esdMiniProject.entities.Course;
+import com.iiitb.esdMiniProject.entities.Department;
+import com.iiitb.esdMiniProject.entities.Employee;
 import com.iiitb.esdMiniProject.entities.Faculty;
 import com.iiitb.esdMiniProject.entities.Specialization;
 import com.iiitb.esdMiniProject.entities.Student;
 import com.iiitb.esdMiniProject.repository.CourseRepository;
+import com.iiitb.esdMiniProject.repository.DepartmentRepository;
+import com.iiitb.esdMiniProject.repository.EmployeeRepository;
 import com.iiitb.esdMiniProject.repository.FacultyRepository;
 import com.iiitb.esdMiniProject.repository.StudentRepository;
 
@@ -24,6 +28,12 @@ public class AuxService {
 
     @Autowired
     private CourseRepository courseRepository;
+
+    @Autowired
+    private DepartmentRepository departmentRepository;
+    
+    @Autowired
+    private EmployeeRepository employeeRepository;
     
     public Student addStudent(AuxStudentDTO studentDTO){
         Student student = new Student();
@@ -31,6 +41,8 @@ public class AuxService {
         student.setGender(studentDTO.getGender());
         student.setLoginId(studentDTO.getLoginId());
         student.setPassword(studentDTO.getPassword());
+        student.setStudentRollNo(studentDTO.getRollNo());
+
 
         return studentRepository.save(student);
 
@@ -75,4 +87,30 @@ public class AuxService {
 
         return courseRepository.save(course);
     }
+
+    public Department addDept(AuxDeptDTO deptDTO){
+        Department department = new Department();
+        department.setDeptName(deptDTO.getDeptName());
+        department.setDeptCapacity(deptDTO.getDeptCapacity());
+
+        return departmentRepository.save(department);
+    }
+
+    public Employee addEmployee(AuxEmployeeDTO employeeDTO){
+        Employee employee = new Employee();
+        employee.setFirstName(employeeDTO.getFirstName());
+        employee.setLastName(employeeDTO.getLastName());
+        employee.setEmail(employeeDTO.getEmail());
+        employee.setPassword(employeeDTO.getPassword());
+        employee.setTitle(employeeDTO.getTitle());
+        employee.setPhotograph(employeeDTO.getPhotograph());
+
+        Optional<Department> department = departmentRepository.findById(employeeDTO.getDeptId());
+        if(department.isPresent()){
+            employee.setDepartment(department.get());
+        }
+
+        return employeeRepository.save(employee);
+    }
+
 }

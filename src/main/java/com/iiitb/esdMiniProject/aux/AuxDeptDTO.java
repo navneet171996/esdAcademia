@@ -9,11 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuxStudentDTO {
+public class AuxDeptDTO {
     
-    private String name;
-    private char gender;
-    private String loginId;
-    private String password;
-    private String rollNo;
+    private String deptName;
+    private Integer deptCapacity;
 }

@@ -33,4 +33,16 @@ public class AuxController {
         auxService.addCourse(courseDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping(path = "/add/department")
+    public ResponseEntity<?> addDept(@RequestBody AuxDeptDTO deptDTO){
+        auxService.addDept(deptDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/add/employee")
+    public ResponseEntity<?> addEmployee(@RequestBody AuxEmployeeDTO employeeDTO){
+        auxService.addEmployee(employeeDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
