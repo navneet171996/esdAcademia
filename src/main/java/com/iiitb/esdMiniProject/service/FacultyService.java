@@ -1,11 +1,14 @@
 package com.iiitb.esdMiniProject.service;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iiitb.esdMiniProject.entities.AddTa;
+import com.iiitb.esdMiniProject.entities.Course;
 import com.iiitb.esdMiniProject.entities.Faculty;
 import com.iiitb.esdMiniProject.entities.Student;
 import com.iiitb.esdMiniProject.repository.CourseRepository;
@@ -41,5 +44,14 @@ public class FacultyService {
             });
         }
         return 1;
+    }
+
+    public Set<Course> viewCoursesByFaculty(String facCode){
+        Optional<Faculty> fOptional = facultyRepository.findByFacCode(facCode);
+        if(fOptional.isPresent()){
+            Faculty faculty = fOptional.get();
+            return faculty.getCourses();
+        }
+        return new HashSet<>();
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.iiitb.esdMiniProject.entities.AddTa;
 import com.iiitb.esdMiniProject.entities.AuthenticationObject;
+import com.iiitb.esdMiniProject.entities.Course;
 import com.iiitb.esdMiniProject.entities.Department;
 import com.iiitb.esdMiniProject.entities.Employee;
 import com.iiitb.esdMiniProject.service.AuthenticationService;
@@ -62,5 +63,11 @@ public class MainController {
     public ResponseEntity<Set<Employee>> viewEmployeesByDepartment(@PathVariable Long deptId){
         return new ResponseEntity<Set<Employee>>(departmentService.viewAllEmpByDept(deptId), HttpStatus.OK);
     }
+
+    @GetMapping(path = "faculty/courses")
+    public ResponseEntity<Set<Course>> getCoursesByFaculty(@PathVariable String facCode){
+        return new ResponseEntity<Set<Course>>(facultyService.viewCoursesByFaculty(facCode), HttpStatus.OK);
+    }
+    
     
 }
