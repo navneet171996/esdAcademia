@@ -30,9 +30,9 @@ public class DepartmentService {
     }
 
     public Set<Employee> viewAllEmpByDept(Long deptId){
-        Optional<Department> opDept = departmentRepository.findById(deptId);
-        if(opDept.isPresent()){
-            return opDept.get().getEmployees();
+        Optional<Set<Employee>> opEmp = departmentRepository.findEmployeesByDept(deptId);
+        if(opEmp.isPresent()){
+            return opEmp.get();
         }
         return new HashSet<>();
     }

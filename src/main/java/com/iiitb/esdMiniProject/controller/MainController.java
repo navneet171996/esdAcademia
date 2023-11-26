@@ -59,12 +59,12 @@ public class MainController {
         return new ResponseEntity<List<Department>>(departmentService.viewAllDepartments(), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/department/employees")
+    @GetMapping(path = "/department/employees/{deptId}")
     public ResponseEntity<Set<Employee>> viewEmployeesByDepartment(@PathVariable Long deptId){
         return new ResponseEntity<Set<Employee>>(departmentService.viewAllEmpByDept(deptId), HttpStatus.OK);
     }
 
-    @GetMapping(path = "faculty/courses")
+    @GetMapping(path = "/faculty/courses/{facCode}")
     public ResponseEntity<Set<Course>> getCoursesByFaculty(@PathVariable String facCode){
         return new ResponseEntity<Set<Course>>(facultyService.viewCoursesByFaculty(facCode), HttpStatus.OK);
     }

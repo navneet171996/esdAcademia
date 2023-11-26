@@ -47,10 +47,9 @@ public class FacultyService {
     }
 
     public Set<Course> viewCoursesByFaculty(String facCode){
-        Optional<Faculty> fOptional = facultyRepository.findByFacCode(facCode);
-        if(fOptional.isPresent()){
-            Faculty faculty = fOptional.get();
-            return faculty.getCourses();
+        Optional<Set<Course>> cOptional = facultyRepository.findCoursesByFaculty(facCode);
+        if(cOptional.isPresent()){
+            return cOptional.get();
         }
         return new HashSet<>();
     }
